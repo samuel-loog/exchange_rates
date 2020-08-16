@@ -16,7 +16,6 @@ class ExchangeController extends Controller
      */
     public function index()
     {
-//        echo 'http://www.cbr.ru/scripts/XML_daily.asp?date_req=' . date('d/m/Y'); die;
         $xml = Http::get('http://www.cbr.ru/scripts/XML_daily.asp?date_req=' . date('d/m/Y'));
 
         $xmlObject = simplexml_load_string($xml);
@@ -45,16 +44,5 @@ class ExchangeController extends Controller
     public function history()
     {
         return new ExchangeCollection(Exchange::all()->sortByDesc('date'));
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 }
