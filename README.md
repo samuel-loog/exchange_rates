@@ -12,27 +12,37 @@ $ git clone https://github.com/samuel-loog/exchange_rates.git
 $ cd ./exchange_rates
 ```
 
-4. Запускаем Docker:
+4. Собираем Docker:
+```
+$ docker-compose build
+```
+
+5. Устанавливаем пакеты
+```
+docker run --rm -v $(pwd):/app composer install
+```
+
+6. Запускаем Docker:
 ```
 $ docker-compose up -d
 ```
 
-5. Выполняем миграции:
-```
-$ docker-compose exec app php artisan migrate
-```
-
-6. Создаем .env файл:
+7. Создаем .env файл:
 ```
 $ cp .env.example .env
 ```
 
-6. Генрируем ключ приложения и кэшируем настройки:
+8. Выполняем миграции:
+```
+$ docker-compose exec app php artisan migrate
+```
+
+9. Генрируем ключ приложения и кэшируем настройки:
 ```
 $ docker-compose exec app php artisan key:generate
 $ docker-compose exec app php artisan config:cache
 ```
 
-7. Проверяем результат:
+10. Проверяем результат:
 http://localhost/exchange-rates
 http://localhost/exchange-rates/history
